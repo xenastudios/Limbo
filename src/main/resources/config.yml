@@ -1,0 +1,51 @@
+#
+# Limbo By Xena Studios
+# Version $version
+#
+
+# Plugin Messages
+messages:
+  error:
+    player-only: "<red>Only a player can execute this command!</red>"
+
+# Main Server
+main-server: main
+
+# World Name
+world-name: world
+
+# Delete World
+delete-world:
+  enabled: true
+
+# World Generator
+world-generator:
+  block: WHITE_STAINED_GLASS
+
+# Auto Join
+auto-join:
+  enabled: true
+  interval: 300 # seconds
+  messages:
+    attempt-join: "<green>Attempting to join the server...</green>"
+
+# Join Message
+join-message:
+  enabled: true
+  clear-chat: true
+  message: "<red>There has been an issue with the server. You have been sent here until it's back online.</red>"
+
+# Action bar
+action-bar:
+  enabled: true
+  message: "<white>Use <gold>/join</gold> to join the server!</white>"
+
+# Plugin Commands
+commands:
+  join:
+    enabled: true
+    permission: limbo.command.join
+    aliases:
+      - play
+    messages:
+      attempt-join: "<green>Attempting to join the server...</green>"
