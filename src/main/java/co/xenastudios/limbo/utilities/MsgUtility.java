@@ -34,5 +34,6 @@ public class MsgUtility {
 	}
 
 	public static void format(@NotNull CommandSender sender, @Nullable String string) {
+		
 	}
 }

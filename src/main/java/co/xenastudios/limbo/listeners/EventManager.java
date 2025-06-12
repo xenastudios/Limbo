@@ -17,6 +17,7 @@ public class EventManager {
         pluginManager.registerEvents(new JoinEvent(plugin), plugin);
         pluginManager.registerEvents(new QuitEvent(), plugin);
         pluginManager.registerEvents(new RedstoneEvent(), plugin);
+        pluginManager.registerEvents(new SpawnEvent(), plugin);
         pluginManager.registerEvents(new WorldLoadEvent(), plugin);
 
         plugin.getLogger().log(Level.INFO, "Events registered!");
