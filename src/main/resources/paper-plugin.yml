@@ -1,0 +1,6 @@
+name: Limbo
+version: $version
+main: co.xenastudios.limbo.LimboPlugin
+authors:
+  - Cookie
+api-version: '1.21.5'
