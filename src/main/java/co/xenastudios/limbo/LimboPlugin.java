@@ -1,7 +1,7 @@
 package co.xenastudios.limbo;
 
-import co.xenastudios.limbo.commands.CommandManager;
 import co.xenastudios.limbo.listeners.EventManager;
+import io.papermc.paper.plugin.lifecycle.event.types.LifecycleEvents;
 import org.bukkit.generator.ChunkGenerator;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.codehaus.plexus.util.FileUtils;
@@ -11,7 +11,6 @@ import java.io.File;
 import java.io.IOException;
 
 public class LimboPlugin extends JavaPlugin {
-	private CommandManager commandManager;
 	private EventManager eventManager;
 	private ActionBarManager actionBarManager;
 
@@ -30,7 +29,12 @@ public class LimboPlugin extends JavaPlugin {
 
 		this.getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
 
-		this.commandManager = new CommandManager(this);
+		this.getLifecycleManager().registerEventHandler(LifecycleEvents.COMMANDS, commands -> {
+			if (this.getConfig().getBoolean("commands.join.enabled")) {
+				commands.registrar().register(JoinCommand.createCommand(this), "Attempt to join the server.", this.getConfig().getStringList("commands.join.aliases"));
+			}
+		});
+
 		this.eventManager = new EventManager(this);
 
 		if (this.getConfig().getBoolean("action-bar.enabled", false)) {
@@ -50,10 +54,6 @@ public class LimboPlugin extends JavaPlugin {
 	@Override
 	public ChunkGenerator getDefaultWorldGenerator(@NotNull String worldName, String id) {
 		return new WorldGenerator(this);
-	}
-
-	public CommandManager getCommandManager() {
-		return this.commandManager;
 	}
 
 	public EventManager getEventManager() {
